@@ -176,22 +176,42 @@ export default function Home() {
           </div>
         </section>
 
-        {/* FOOTER DASHBOARD */}
-        <footer className="sticky bottom-10 z-50 p-[1px] rounded-[2.5rem] bg-gradient-to-r from-blue-500/30 via-slate-800/50 to-purple-500/30 backdrop-blur-3xl shadow-[0_-20px_50px_rgba(0,0,0,0.5)]">
-          <div className="bg-slate-950/80 px-10 py-6 rounded-[2.4rem] flex flex-wrap justify-between items-center gap-8 border border-white/5">
-            <div className="flex flex-col">
-              <span className="text-lg font-black text-white font-mono tracking-tight italic underline decoration-blue-500 underline-offset-4">tanaytammineni22@gmail.com</span>
-              <span className="text-xs text-slate-500 font-mono italic tracking-widest">+1 816-277-9463</span>
-            </div>
-            <div className="flex gap-8 items-center font-black italic tracking-widest uppercase text-xs">
-              <a href="https://linkedin.com/in/tanaytammineni" target="_blank" className="text-slate-400 hover:text-white transition-all">LinkedIn</a>
-              <a href="https://github.com/tanaytammineni" target="_blank" className="text-slate-400 hover:text-white transition-all">GitHub</a>
-              <a href="/resume.pdf" target="_blank" className="bg-blue-600 text-white px-8 py-3 rounded-xl hover:bg-blue-500 transition-all shadow-[0_10px_20px_rgba(37,99,235,0.3)]">
-                View Resume
-              </a>
-            </div>
-          </div>
-        </footer>
+       {/* FOOTER DASHBOARD */}
+<footer className="sticky bottom-10 z-50 p-[1px] rounded-[2.5rem] bg-gradient-to-r from-blue-500/30 via-slate-800/50 to-purple-500/30 backdrop-blur-3xl shadow-[0_-20px_50px_rgba(0,0,0,0.5)]">
+  <div className="bg-slate-950/80 px-10 py-6 rounded-[2.4rem] flex flex-wrap justify-between items-center gap-8 border border-white/5">
+    <div className="flex flex-col">
+      <span className="text-lg font-black text-white font-mono tracking-tight italic underline decoration-blue-500 decoration-2 underline-offset-4 font-bold">tanaytammineni22@gmail.com</span>
+      <span className="text-xs text-slate-500 font-mono italic tracking-widest font-bold">+1 816-277-9463</span>
+    </div>
+    <div className="flex gap-8 items-center font-black italic tracking-widest uppercase text-xs">
+      {/* LINKEDIN - UPDATED URL */}
+      <a 
+        href="https://www.linkedin.com/in/tanay-tammineni-ba6a9918b/" 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        className="text-slate-400 hover:text-white transition-all font-bold"
+      >
+        LinkedIn
+      </a>
+      {/* GITHUB - UPDATED URL */}
+      <a 
+        href="https://github.com/TammineniTanay" 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        className="text-slate-400 hover:text-white transition-all font-bold"
+      >
+        GitHub
+      </a>
+      <a 
+        href="/resume.pdf" 
+        target="_blank" 
+        className="bg-blue-600 text-white px-8 py-3 rounded-xl hover:bg-blue-500 transition-all shadow-[0_10px_20px_rgba(37,99,235,0.3)] font-bold"
+      >
+        View Resume
+      </a>
+    </div>
+  </div>
+</footer>
       </main>
     </div>
   );
