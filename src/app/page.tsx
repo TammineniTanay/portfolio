@@ -2,8 +2,18 @@
 import { motion } from "framer-motion";
 import React, { useState } from 'react';
 
-// Enhanced Flip Card with High-Detail Content
-const ProjectCard = ({ title, overview, contributions, tags, metric, accentColor }) => {
+// TypeScript Interface for Project Props
+interface ProjectProps {
+  title: string;
+  overview: string;
+  contributions: string[];
+  tags: string[];
+  metric: string;
+  accentColor: string;
+}
+
+// Enhanced Flip Card Component
+const ProjectCard = ({ title, overview, contributions, tags, metric, accentColor }: ProjectProps) => {
   const [isFlipped, setIsFlipped] = useState(false);
 
   return (
@@ -94,7 +104,7 @@ export default function Home() {
           </p>
           <div className="flex flex-wrap gap-4 mt-6 font-bold italic text-sm">
              <div className="px-6 py-2 rounded-xl border border-blue-500/20 bg-blue-500/5 backdrop-blur-md text-blue-300 tracking-wide">3.9 GRADUATE GPA</div>
-             <div className="px-6 py-2 rounded-xl border border-white/10 bg-white/5 backdrop-blur-md text-slate-300 tracking-wide underline underline-offset-4">SOUTHEAST MISSOURI STATE UNIVERSITY</div>
+             <div className="px-6 py-2 rounded-xl border border-white/10 bg-white/5 backdrop-blur-md text-slate-300 tracking-wide underline underline-offset-4 tracking-tighter">SOUTHEAST MISSOURI STATE UNIVERSITY</div>
           </div>
         </motion.header>
 
@@ -116,7 +126,7 @@ export default function Home() {
               metric="40% Latency Reduction"
             />
             <ProjectCard 
-              title="Real-Time Vehicle Detection"
+              title="Vehicle Detection"
               accentColor="from-purple-500/50"
               overview="A published research system for the automated monitoring, counting, and classification of traffic in real-time video feeds."
               contributions={[
@@ -129,7 +139,7 @@ export default function Home() {
               metric="Published Peer-Reviewed Research"
             />
             <ProjectCard 
-              title="Real-Time Chat Application"
+              title="Chat Application"
               accentColor="from-emerald-500/50"
               overview="A robust instant messaging platform engineered for high concurrency and secure user interactions."
               contributions={[
