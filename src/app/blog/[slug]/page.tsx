@@ -4,10 +4,9 @@ import path from 'path';
 import matter from 'gray-matter';
 import Link from 'next/link';
 
-export default async function Post({ params }: { params: { slug: string } }) {
-  const { slug } = params;
+export default async function Post({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
   const filePath = path.join(process.cwd(), 'content/blog', `${slug}.mdx`);
-
   if (!fs.existsSync(filePath)) return notFound();
 
   const fileContents = fs.readFileSync(filePath, 'utf8');
@@ -16,7 +15,7 @@ export default async function Post({ params }: { params: { slug: string } }) {
   let MDXContent;
   try {
     // Correctly pathing to the root content folder
-    const mod = await import(`../../../../content/blog/${slug}.mdx`);
+      const mod = await import(`@/../content/blog/${slug}.mdx`);
     MDXContent = mod.default;
   } catch (e) {
     return notFound();
