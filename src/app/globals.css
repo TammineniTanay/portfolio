@@ -189,3 +189,7 @@ a:hover ~ .cursor-ring, button:hover ~ .cursor-ring {
 .cursor-dot, .cursor-ring {
   pointer-events: none !important;
 }
+/* Pause marquee on hover for better readability */
+.marquee-track:hover {
+  animation-play-state: paused;
+}
