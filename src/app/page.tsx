@@ -62,9 +62,9 @@ function useCounter(target: number, duration = 2000, active = false) {
 }
 
 // ── FLIP CARD ─────────────────────────────────────────────────────────
-const FlipCard = ({ year, title, bullets, tags, link, badge }: {
+const FlipCard = ({ year, title, bullets, tags, link, badge, demo }: {
   year: string; title: string; bullets: string[];
-  tags: string[]; link: string; badge?: string;
+  tags: string[]; link: string; badge?: string; demo?: string;
 }) => {
   const [flipped, setFlipped] = useState(false);
   return (
@@ -123,14 +123,14 @@ const FlipCard = ({ year, title, bullets, tags, link, badge }: {
           <div style={{ borderLeft: '2px solid var(--accent)', paddingLeft: '0.6rem', fontFamily: 'DM Mono,monospace', fontSize: '0.62rem', color: '#f7a26a', lineHeight: 1.6 }}>{tags.join(' · ')}</div>
           <a href={link} target="_blank" rel="noopener noreferrer" onClick={e => e.stopPropagation()}
             style={{ fontFamily: 'DM Mono,monospace', fontSize: '0.65rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--accent3)', border: '1px solid rgba(0,255,148,0.3)', padding: '0.35rem 0.85rem', textDecoration: 'none', display: 'inline-block', width: 'fit-content' }}>
-            GitHub ↗
+GitHub ↗
           </a>
+          {demo && <a href={demo} onClick={e => e.stopPropagation()} style={{ fontFamily: 'DM Mono,monospace', fontSize: '0.65rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--accent)', border: '1px solid rgba(0,229,255,0.3)', padding: '0.35rem 0.85rem', textDecoration: 'none', display: 'inline-block', width: 'fit-content' }}>Live Demo ↗</a>}
         </div>
       </div>
     </div>
   );
 };
-
 // ── TERMINAL COMPONENT ────────────────────────────────────────────────
 const Terminal = () => {
   const [input, setInput] = useState('');
@@ -273,7 +273,8 @@ const ALL_PROJECTS = [
       'NLI-based hallucination filter with multi-document reasoning and citation source tracking per answer',
     ],
     tags: ['LangGraph', 'Qdrant', 'Elasticsearch', 'Neo4j', 'RAGAS', 'FastAPI'],
-    link: 'https://github.com/TammineniTanay/hybrid-rag-system',
+link: 'https://github.com/TammineniTanay/hybrid-rag-system',
+    demo: '/projects/hybrid-rag',
   },
   {
     id: 3, year: 'Apr 2025 — Present', title: 'LiveWire AI Meeting Transcription', badge: 'Featured',
