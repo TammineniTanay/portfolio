@@ -262,6 +262,7 @@ const ALL_PROJECTS = [
     ],
     tags: ['PyTorch', 'DeepSpeed', 'HuggingFace', 'QLoRA', 'vLLM', 'PEFT'],
     link: 'https://github.com/TammineniTanay/distributed-finetune-pipeline',
+    demo: '/projects/distributed-finetune-pipeline',
   },
   {
     id: 2, year: 'Feb 2026 — Mar 2026', title: 'Hybrid RAG with Self-Correcting Retrieval', badge: 'New',
