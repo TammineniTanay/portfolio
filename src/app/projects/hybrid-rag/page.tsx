@@ -419,8 +419,7 @@ export default function HybridRAGDemo() {
 
   return (
     <div style={{ minHeight: "100vh", background: "#0a0a09", color: "#ccc", fontFamily: "'SF Mono', 'Fira Code', 'Consolas', monospace" }}>
-      <style>{`@keyframes pulse { 0%,100% { opacity: 0.3; } 50% { opacity: 1; } } * { box-sizing: border-box; cursor: auto !important; } .curs`}</style>
-
+		<style>{`@keyframes pulse { 0%,100% { opacity: 0.3; } 50% { opacity: 1; } } * { box-sizing: border-box; }`}</style>
       {/* Nav */}
       <div style={{ display: "flex", alignItems: "center", gap: 12, padding: "12px 20px", borderBottom: "1px solid #2a2a28" }}>
         <a href="/" style={{ color: "#7F77DD", textDecoration: "none", fontSize: 14, fontWeight: 700 }}>TT.</a>
