@@ -255,7 +255,7 @@ export default function DistributedPipelineDemo() {
   const [tab, setTab] = useState<"arch" | "results">("arch");
   return (
     <div style={{ minHeight: "100vh", background: "#0a0a09", color: "#ccc", fontFamily: "'SF Mono', 'Fira Code', 'Consolas', monospace" }}>
-      <style>{`@keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } } * { box-sizing: border-box; }`}</style>
+      <style>{`@keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }`}</style>
       {/* Nav */}
       <div style={{ display: "flex", alignItems: "center", gap: 12, padding: "12px 20px", borderBottom: "1px solid #2a2a28" }}>
         <a href="/" style={{ color: "#7F77DD", textDecoration: "none", fontSize: 14, fontWeight: 700 }}>TT.</a>
