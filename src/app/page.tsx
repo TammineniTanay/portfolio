@@ -499,7 +499,8 @@ export default function Portfolio() {
   const visibleProjects = ALL_PROJECTS.filter(p => filterMap[activeFilter]?.includes(p.id));
 
   // Custom cursor
-  useEffect(() => {
+useEffect(() => {
+    document.body.classList.add('has-custom-cursor');
     const cursor = cursorRef.current; const ring = ringRef.current;
     let mx = 0, my = 0, rx = 0, ry = 0; let rafId: number;
     const onMove = (e: MouseEvent) => { mx = e.clientX; my = e.clientY; };
@@ -510,8 +511,8 @@ export default function Portfolio() {
       rafId = requestAnimationFrame(anim);
     };
     window.addEventListener('mousemove', onMove); anim();
-    return () => { window.removeEventListener('mousemove', onMove); cancelAnimationFrame(rafId); };
-  }, []);
+    return () => { window.removeEventListener('mousemove', onMove); cancelAnimationFrame(rafId); document.body.classList.remove('has-custom-cursor'); };
+}, []);
 
   // Skill bar observer
   useEffect(() => {

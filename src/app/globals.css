@@ -175,13 +175,11 @@ a:hover ~ .cursor-ring, button:hover ~ .cursor-ring {
   background: var(--accent); border-radius: 50%;
   box-shadow: 0 0 10px var(--accent);
 }
-/* Hide default cursor only on desktop */
-/* Hide default cursor universally on desktop */
+/* Hide default cursor only on homepage (where custom cursor exists) */
 @media (min-width: 768px) {
-  *, *::before, *::after, a, button, [role="button"], input, label {
-    cursor: none !important;
-  }
-  .cursor-auto, .cursor-default, .cursor-pointer {
+  body.has-custom-cursor *, 
+  body.has-custom-cursor *::before, 
+  body.has-custom-cursor *::after {
     cursor: none !important;
   }
 }
