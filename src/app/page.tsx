@@ -752,6 +752,25 @@ useEffect(() => {
             </a>
           </div>
         </div>
+        <div className="mt-4 p-5 border border-[#1e2535]" style={{ borderLeft: '2px solid #7c3aed' }}>
+            <span className="font-mono text-xs text-[#7c3aed] uppercase tracking-widest block mb-2">📄 Research Paper (2026)</span>
+            <h3 className="title-font text-white font-bold mb-2 leading-snug text-sm">UniLLMOps: A Unified Framework for End-to-End Large Language Model Production Systems</h3>
+            <p className="text-xs text-[#5a6478] mb-3 italic">From Distributed Fine-Tuning to Hybrid Retrieval-Augmented Inference · 19 pages · IEEE format</p>
+            <div className="flex gap-4">
+              <a href="https://zenodo.org/records/19582347"
+                target="_blank" rel="noopener noreferrer"
+                className="font-mono text-xs uppercase tracking-widest text-[#7c3aed] hover:text-white transition-colors"
+                style={{ borderBottom: '1px solid #7c3aed', paddingBottom: '2px' }}>
+                Zenodo →
+              </a>
+              <a href="https://www.researchgate.net/publication/403818727"
+                target="_blank" rel="noopener noreferrer"
+                className="font-mono text-xs uppercase tracking-widest text-[#7c3aed] hover:text-white transition-colors"
+                style={{ borderBottom: '1px solid #7c3aed', paddingBottom: '2px' }}>
+                ResearchGate →
+              </a>
+            </div>
+          </div>
 
         {/* SKILLS */}
         <div id="skills">
