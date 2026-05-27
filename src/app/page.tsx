@@ -9,6 +9,20 @@ const ProjectTimeline = dynamic(() => import('@/components/ProjectTimeline'), { 
 const ProjectComplexityMatrix = dynamic(() => import('@/components/ProjectComplexityMatrix'), { ssr: false });
 const HackerNewsFeed = dynamic(() => import('@/components/HackerNewsFeed'), { ssr: false });
 const Certifications = dynamic(() => import('@/components/Certifications'), { ssr: false });
+const LoadingScreen = dynamic(() => import('@/components/LoadingScreen'), { ssr: false });
+const FloatingNav = dynamic(() => import('@/components/FloatingNav'), { ssr: false });
+const NeuralBackground = dynamic(() => import('@/components/NeuralBackground'), { ssr: false });
+const ParticleCursor = dynamic(() => import('@/components/ParticleCursor'), { ssr: false });
+const GlitchText = dynamic(() => import('@/components/GlitchText'), { ssr: false });
+const AskTanay = dynamic(() => import('@/components/AskTanay'), { ssr: false });
+const MetricsDashboard = dynamic(() => import('@/components/MetricsDashboard'), { ssr: false });
+const MermaidDiagram = dynamic(() => import('@/components/MermaidDiagram'), { ssr: false });
+const OpenToWorkBanner = dynamic(() => import('@/components/OpenToWorkBanner'), { ssr: false });
+const ThemeToggle = dynamic(() => import('@/components/ThemeToggle'), { ssr: false });
+const ResumeOptimizer = dynamic(() => import('@/components/ResumeOptimizer'), { ssr: false });
+const NowPlaying = dynamic(() => import('@/components/NowPlaying'), { ssr: false });
+const KonamiEgg = dynamic(() => import('@/components/KonamiEgg'), { ssr: false });
+import soundManager from '@/components/SoundManager';
 
 // ── TYPEWRITER HOOK ───────────────────────────────────────────────────
 function useTypewriter(words: string[], speed = 80, pause = 2000) {
@@ -62,14 +76,14 @@ function useCounter(target: number, duration = 2000, active = false) {
 }
 
 // ── FLIP CARD ─────────────────────────────────────────────────────────
-const FlipCard = ({ year, title, bullets, tags, link, badge, demo }: {
+const FlipCard = ({ year, title, bullets, tags, link, badge }: {
   year: string; title: string; bullets: string[];
-  tags: string[]; link: string; badge?: string; demo?: string;
+  tags: string[]; link: string; badge?: string;
 }) => {
   const [flipped, setFlipped] = useState(false);
   return (
     <div style={{ perspective: '1200px', height: '420px', cursor: 'pointer' }}
-      onClick={() => setFlipped(f => !f)}>
+      onClick={() => { setFlipped(f => !f); soundManager.flip(); }}>
       <div style={{
         position: 'relative', width: '100%', height: '100%',
         transformStyle: 'preserve-3d',
@@ -123,14 +137,14 @@ const FlipCard = ({ year, title, bullets, tags, link, badge, demo }: {
           <div style={{ borderLeft: '2px solid var(--accent)', paddingLeft: '0.6rem', fontFamily: 'DM Mono,monospace', fontSize: '0.62rem', color: '#f7a26a', lineHeight: 1.6 }}>{tags.join(' · ')}</div>
           <a href={link} target="_blank" rel="noopener noreferrer" onClick={e => e.stopPropagation()}
             style={{ fontFamily: 'DM Mono,monospace', fontSize: '0.65rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--accent3)', border: '1px solid rgba(0,255,148,0.3)', padding: '0.35rem 0.85rem', textDecoration: 'none', display: 'inline-block', width: 'fit-content' }}>
-GitHub ↗
+            GitHub ↗
           </a>
-          {demo && <a href={demo} onClick={e => e.stopPropagation()} style={{ fontFamily: 'DM Mono,monospace', fontSize: '0.65rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--accent)', border: '1px solid rgba(0,229,255,0.3)', padding: '0.35rem 0.85rem', textDecoration: 'none', display: 'inline-block', width: 'fit-content' }}>Live Demo ↗</a>}
         </div>
       </div>
     </div>
   );
 };
+
 // ── TERMINAL COMPONENT ────────────────────────────────────────────────
 const Terminal = () => {
   const [input, setInput] = useState('');
@@ -262,7 +276,6 @@ const ALL_PROJECTS = [
     ],
     tags: ['PyTorch', 'DeepSpeed', 'HuggingFace', 'QLoRA', 'vLLM', 'PEFT'],
     link: 'https://github.com/TammineniTanay/distributed-finetune-pipeline',
-    demo: '/projects/distributed-finetune-pipeline',
   },
   {
     id: 2, year: 'Feb 2026 — Mar 2026', title: 'Hybrid RAG with Self-Correcting Retrieval', badge: 'New',
@@ -274,8 +287,7 @@ const ALL_PROJECTS = [
       'NLI-based hallucination filter with multi-document reasoning and citation source tracking per answer',
     ],
     tags: ['LangGraph', 'Qdrant', 'Elasticsearch', 'Neo4j', 'RAGAS', 'FastAPI'],
-link: 'https://github.com/TammineniTanay/hybrid-rag-system',
-    demo: '/projects/hybrid-rag',
+    link: 'https://github.com/TammineniTanay/hybrid-rag-system',
   },
   {
     id: 3, year: 'Apr 2025 — Present', title: 'LiveWire AI Meeting Transcription', badge: 'Featured',
@@ -480,6 +492,8 @@ export default function Portfolio() {
   const [statsVisible, setStatsVisible] = useState(false);
   const [showTerminal, setShowTerminal] = useState(false);
   const [showJD, setShowJD] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [soundOn, setSoundOn] = useState(true);
 
   const typewriterText = useTypewriter(['AI/ML Engineer', 'LLM Developer', 'GenAI Builder', 'ML Researcher', 'Published Author'], 80, 2000);
 
@@ -499,8 +513,7 @@ export default function Portfolio() {
   const visibleProjects = ALL_PROJECTS.filter(p => filterMap[activeFilter]?.includes(p.id));
 
   // Custom cursor
-useEffect(() => {
-    document.body.classList.add('has-custom-cursor');
+  useEffect(() => {
     const cursor = cursorRef.current; const ring = ringRef.current;
     let mx = 0, my = 0, rx = 0, ry = 0; let rafId: number;
     const onMove = (e: MouseEvent) => { mx = e.clientX; my = e.clientY; };
@@ -511,8 +524,8 @@ useEffect(() => {
       rafId = requestAnimationFrame(anim);
     };
     window.addEventListener('mousemove', onMove); anim();
-    return () => { window.removeEventListener('mousemove', onMove); cancelAnimationFrame(rafId); document.body.classList.remove('has-custom-cursor'); };
-}, []);
+    return () => { window.removeEventListener('mousemove', onMove); cancelAnimationFrame(rafId); };
+  }, []);
 
   // Skill bar observer
   useEffect(() => {
@@ -543,15 +556,45 @@ useEffect(() => {
 
   return (
     <>
+      {/* LOADING SCREEN */}
+      {loading && <LoadingScreen onDone={() => setLoading(false)} />}
+
+      {/* GLOBAL EXTRAS */}
+      <NeuralBackground />
+      <ParticleCursor />
+      <KonamiEgg />
+      {!loading && <OpenToWorkBanner />}
+      {!loading && <FloatingNav />}
+      {!loading && <ThemeToggle />}
+      {!loading && <AskTanay />}
+
+      {/* SOUND TOGGLE */}
+      {!loading && (
+        <button
+          onClick={() => { const m = soundManager.toggle(); setSoundOn(!m); }}
+          style={{
+            position: 'fixed', bottom: '2rem', left: '2rem', zIndex: 200,
+            fontFamily: 'DM Mono, monospace', fontSize: '0.65rem', letterSpacing: '0.1em',
+            padding: '0.5rem 0.85rem', background: 'var(--surface2)',
+            border: `1px solid ${soundOn ? 'rgba(0,229,255,0.3)' : 'var(--border)'}`,
+            color: soundOn ? 'var(--accent)' : 'var(--muted)',
+            cursor: 'pointer', transition: 'all 0.2s', textTransform: 'uppercase',
+          }}
+          title={soundOn ? 'Mute sounds' : 'Enable sounds'}
+        >
+          {soundOn ? '♪ SFX ON' : '♪ SFX OFF'}
+        </button>
+      )}
+
       {/* NAV */}
       <nav className="fixed top-0 left-0 w-full z-[100] bg-[#050709]/80 backdrop-blur-md border-b border-[#1e2535]">
         <div className="max-w-[1400px] mx-auto px-[5%] py-4 flex justify-between items-center">
-          <a href="#" className="font-mono text-[#00e5ff] font-bold tracking-widest text-lg uppercase italic">TT.</a>
+          <a href="#" className="font-mono text-[#00e5ff] font-bold tracking-widest text-lg uppercase italic" onClick={() => soundManager.click()}>TT.</a>
           <div className="flex gap-6 text-xs md:text-sm font-mono text-[#5a6478] uppercase tracking-widest">
-            <a href="#projects" className="hover:text-[#00e5ff] transition-colors">01. Projects</a>
-            <a href="#experience" className="hover:text-[#00e5ff] transition-colors">02. Background</a>
-            <a href="#skills" className="hover:text-[#00e5ff] transition-colors">03. Stack</a>
-            <a href="#contact" className="hover:text-[#00e5ff] transition-colors">04. Contact</a>
+            <a href="#projects" className="hover:text-[#00e5ff] transition-colors" onClick={() => soundManager.click()}>01. Projects</a>
+            <a href="#experience" className="hover:text-[#00e5ff] transition-colors" onClick={() => soundManager.click()}>02. Background</a>
+            <a href="#skills" className="hover:text-[#00e5ff] transition-colors" onClick={() => soundManager.click()}>03. Stack</a>
+            <a href="#contact" className="hover:text-[#00e5ff] transition-colors" onClick={() => soundManager.click()}>04. Contact</a>
           </div>
         </div>
       </nav>
@@ -570,6 +613,10 @@ useEffect(() => {
         <h1 className="text-[clamp(3rem,8vw,6rem)] leading-[1.1] font-bold title-font mb-4 tracking-tight text-white uppercase italic">
           TANAY<br />TAMMINENI.
         </h1>
+        {/* NOW PLAYING */}
+        <div className="mb-4">
+          <NowPlaying />
+        </div>
         {/* TYPEWRITER */}
         <div className="text-[clamp(1.2rem,3vw,2rem)] font-mono text-[#00e5ff] mb-6 h-10">
           <span>{typewriterText}</span>
@@ -752,25 +799,6 @@ useEffect(() => {
             </a>
           </div>
         </div>
-        <div className="mt-4 p-5 border border-[#1e2535]" style={{ borderLeft: '2px solid #7c3aed' }}>
-            <span className="font-mono text-xs text-[#7c3aed] uppercase tracking-widest block mb-2">📄 Research Paper (2026)</span>
-            <h3 className="title-font text-white font-bold mb-2 leading-snug text-sm">UniLLMOps: A Unified Framework for End-to-End Large Language Model Production Systems</h3>
-            <p className="text-xs text-[#5a6478] mb-3 italic">From Distributed Fine-Tuning to Hybrid Retrieval-Augmented Inference · 19 pages · IEEE format</p>
-            <div className="flex gap-4">
-              <a href="https://zenodo.org/records/19582347"
-                target="_blank" rel="noopener noreferrer"
-                className="font-mono text-xs uppercase tracking-widest text-[#7c3aed] hover:text-white transition-colors"
-                style={{ borderBottom: '1px solid #7c3aed', paddingBottom: '2px' }}>
-                Zenodo →
-              </a>
-              <a href="https://www.researchgate.net/publication/403818727"
-                target="_blank" rel="noopener noreferrer"
-                className="font-mono text-xs uppercase tracking-widest text-[#7c3aed] hover:text-white transition-colors"
-                style={{ borderBottom: '1px solid #7c3aed', paddingBottom: '2px' }}>
-                ResearchGate →
-              </a>
-            </div>
-          </div>
 
         {/* SKILLS */}
         <div id="skills">
@@ -811,9 +839,15 @@ useEffect(() => {
           <GitHubStats />
           <ArxivFeed />
         </div>
+        <div style={{ marginBottom: '1.5rem' }}>
+          <MetricsDashboard />
+        </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(320px,1fr))', gap: '1.5rem', marginBottom: '1.5rem' }}>
           <ProjectTimeline />
           <ProjectComplexityMatrix />
+        </div>
+        <div style={{ marginBottom: '1.5rem' }}>
+          <MermaidDiagram />
         </div>
         <div style={{ marginBottom: '1.5rem' }}>
           <SkillsGalaxy />
@@ -821,6 +855,9 @@ useEffect(() => {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(320px,1fr))', gap: '1.5rem', marginBottom: '1.5rem' }}>
           <HackerNewsFeed />
           <Certifications />
+        </div>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(320px,1fr))', gap: '1.5rem' }}>
+          <ResumeOptimizer />
         </div>
       </section>
 

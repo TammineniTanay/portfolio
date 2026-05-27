@@ -58,7 +58,7 @@ export default function Certifications() {
             style={{
               padding: '1rem', borderRadius: '6px', cursor: 'default',
               background: hovered === i ? 'var(--surface2)' : 'var(--surface)',
-              border: `1px solid ${hovered === i ? c.color + '40' : 'var(--border)'}`,
+              borderLeft: `1px solid ${hovered === i ? c.color + '40' : 'var(--border)'}`, borderRight: `1px solid ${hovered === i ? c.color + '40' : 'var(--border)'}`, borderBottom: `1px solid ${hovered === i ? c.color + '40' : 'var(--border)'}`,
               transition: 'all 0.2s',
               borderTop: `2px solid ${c.color}`,
             }}>

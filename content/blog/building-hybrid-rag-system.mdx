@@ -1,0 +1,37 @@
+---
+title: "Building a Hybrid RAG System with Self-Correcting Retrieval"
+date: "2026-02-15"
+summary: "How I built a production RAG system combining Qdrant dense search, Elasticsearch BM25, and Neo4j graph retrieval with a CRAG self-correction loop that improved faithfulness by 23.7%."
+tags: ["RAG", "LangGraph", "LLM", "Production AI"]
+---
+
+## The Problem with Naive RAG
+
+Standard RAG pipelines retrieve documents and generate answers. Simple. But in production, naive RAG fails in predictable ways: wrong context gets retrieved, the LLM hallucinates anyway, and there's no feedback loop to catch it.
+
+I needed a system that could handle multi-hop questions across a large enterprise document corpus with verifiable accuracy.
+
+## The Architecture
+
+The key insight: **different retrieval methods excel at different query types**.
+
+- **Dense retrieval** (FAISS/Qdrant) — great for semantic similarity
+- **BM25 sparse** (Elasticsearch) — great for exact keyword matching  
+- **Graph traversal** (Neo4j) — great for entity relationships and multi-hop
+
+I fused all three using Reciprocal Rank Fusion (RRF), which combines rankings without needing score normalization.
+
+## The Self-Correction Loop (CRAG)
+
+The real innovation was Corrective RAG via LangGraph. After retrieval:
+
+1. Score each retrieved document for relevance (0-1)
+2. If average confidence < 0.7 → reformulate the query and retry
+3. Apply NLI-based faithfulness check on the final answer
+4. If answer contradicts source documents → flag and regenerate
+
+This loop reduced hallucination rate significantly and the faithfulness gain was **23.7%** over baseline.
+
+## Key Takeaway
+
+Production RAG is not one retriever + one LLM. It's a system with feedback loops, quality gates, and multiple specialized retrievers working together.

@@ -1,0 +1,41 @@
+---
+title: "QLoRA Fine-Tuning at Scale: What I Learned Building a Distributed Pipeline"
+date: "2026-03-01"
+summary: "Lessons from building an end-to-end distributed LLM fine-tuning pipeline with QLoRA, DeepSpeed ZeRO-3, and model merging via SLERP — achieving 41.2% per-GPU memory reduction."
+tags: ["LLM", "Fine-Tuning", "QLoRA", "DeepSpeed", "Model Merging"]
+---
+
+## Why Fine-Tune at All?
+
+Prompt engineering gets you 80% of the way. Fine-tuning gets you the last 20% that matters for production: domain-specific terminology, consistent output formatting, and latency at inference time (smaller fine-tuned model beats larger prompted model).
+
+## QLoRA: The Memory Efficiency Game Changer
+
+Standard LoRA fine-tunes adapter layers on top of frozen weights. QLoRA goes further: it quantizes the base model to 4-bit NF4 format, which means the frozen weights take 4x less memory.
+
+Combined with DeepSpeed ZeRO-3 (which shards optimizer states, gradients, and parameters across GPUs), the total per-GPU memory reduction was **41.2%** — allowing us to fine-tune Llama 3 8B on hardware that couldn't handle it before.
+
+## Dataset Curation Matters More Than Training
+
+The biggest lesson: garbage in, garbage out applies 10x harder to fine-tuning.
+
+My pipeline:
+1. **MinHash LSH deduplication** — removes near-duplicate examples that cause memorization
+2. **Quality filtering** — perplexity scoring to remove low-quality text
+3. **PII scrubbing** — regex + NER-based personally identifiable info removal
+4. **Format standardization** — consistent instruction/response templates
+
+Skipping any of these steps produced a noticeably worse model.
+
+## Model Merging: SLERP vs Task Arithmetic
+
+After fine-tuning multiple domain-specific adapters, merging them into one model is often better than running multiple models:
+
+- **SLERP** (Spherical Linear Interpolation) — smooth interpolation in weight space, good for similar domains
+- **Task Arithmetic** — add/subtract task vectors, good for distinct capabilities
+
+I merged a "code generation" adapter and a "document QA" adapter using SLERP with λ=0.5. The resulting model outperformed either adapter alone on a combined benchmark.
+
+## The Inference Side
+
+After merging, I deployed with vLLM using tensor parallelism across 2 GPUs. The throughput gain was **3.8x** over naive HuggingFace `generate()`. PagedAttention in vLLM is the key — it eliminates KV cache memory fragmentation.

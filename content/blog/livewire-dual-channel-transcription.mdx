@@ -1,0 +1,41 @@
+---
+title: "How I Built LiveWire: Dual-Channel Real-Time AI Transcription"
+date: "2026-01-20"
+summary: "Engineering a Chrome MV3 extension that captures both tab audio and microphone simultaneously and streams to a Python WebSocket backend for real-time Whisper transcription."
+tags: ["Chrome Extension", "WebSockets", "OpenAI Whisper", "asyncio"]
+---
+
+## The Challenge
+
+Meeting transcription tools like Otter.ai only capture one audio channel — usually just your microphone. But for enterprise sales intelligence, you need both: what the customer says AND what your rep says, cleanly separated.
+
+## Chrome MV3 Dual-Channel Capture
+
+Chrome's `tabCapture` API captures the tab's audio output. Combined with `getUserMedia` for the mic, we get two streams. The tricky part: WebRTC tabs like Zoom use complex audio routing that makes tabCapture unreliable.
+
+**Solution**: Platform fingerprinting detects which meeting platform is active and applies the right capture strategy per platform.
+
+## The WebSocket Pipeline
+
+```
+Chrome Extension (WebM chunks)
+    ↓ WebSocket
+Python FastAPI server
+    ↓ FFmpeg (split streams)
+Tab stream → Whisper → Transcript
+Mic stream  → Whisper → Transcript
+    ↓
+Evidence pack JSON
+```
+
+## EBML Magic Byte Validation
+
+Raw WebM chunks from Chrome sometimes have malformed headers that crash FFmpeg. The fix: validate the EBML magic bytes (0x1A 0x45 0xDF 0xA3) before passing to FFmpeg, and reconstruct the header if missing.
+
+This took 3 days to debug. Worth it.
+
+## Production Lessons
+
+- asyncio + FFmpeg subprocess = tricky. Use `asyncio.create_subprocess_exec` not `subprocess.run`
+- Buffer at least 2 seconds before sending to Whisper — short chunks produce poor transcriptions
+- Device switch detection (user plugs in headphones mid-call) requires monitoring `navigator.mediaDevices.ondevicechange`
