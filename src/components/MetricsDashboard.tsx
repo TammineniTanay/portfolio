@@ -8,7 +8,8 @@ const METRICS = [
   { label: 'Detection Accuracy', value: 88, unit: '%', color: '#f7a26a', desc: 'Vehicle Detection (Published)' },
   { label: 'RAG Retrieval Latency', value: 163.5, unit: 'ms', color: '#e879f9', desc: 'Mean retrieval latency' },
   { label: 'CRAG Rewrite Rate', value: 38, unit: '%', color: '#38bdf8', desc: 'Corrective RAG self-correction' },
-  { label: 'System Uptime', value: 99.5, unit: '%', color: '#4ade80', desc: 'Production deployment @ Automate365' },
+  { label: 'WebSocket Preflight Success', value: 94, unit: '%', color: '#fb7185', desc: 'VoiceBotics AI streaming server' },
+  { label: 'System Uptime', value: 99.9, unit: '%', color: '#4ade80', desc: 'Globalshala Azure pipelines' },
   { label: 'Manual Ops Reduction', value: 60, unit: '%', color: '#fbbf24', desc: 'AI automation pipelines' },
 ];
 

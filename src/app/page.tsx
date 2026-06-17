@@ -156,10 +156,10 @@ const Terminal = () => {
 
   const COMMANDS: Record<string, string[]> = {
     help: ['Available commands:', '  whoami       — about me', '  skills       — tech stack', '  projects     — top projects', '  experience   — work history', '  education    — academic background', '  contact      — get in touch', '  clear        — clear terminal'],
-    whoami: ['Tanay Tammineni', 'AI/ML Engineer | GenAI Developer | Published Researcher', 'MS Computer Science, 3.9 GPA — Southeast Missouri State University', 'Currently: AI Systems Developer Intern @ Automate365', 'Location: Irving, TX | Open to full relocation'],
+    whoami: ['Tanay Tammineni', 'AI/ML Engineer | GenAI Developer | Published Researcher', 'MS Computer Science, 3.9 GPA — Southeast Missouri State University', 'Currently: AI Systems Developer Intern @ VoiceBotics AI', 'Location: Irving, TX | Open to full relocation'],
     skills: ['── AI/ML ──', 'PyTorch · TensorFlow · LangChain · LlamaIndex · HuggingFace', 'RAG Pipelines · Agentic Workflows · Model Merging · Fine-tuning', '── Backend ──', 'Python · FastAPI · WebSockets · Docker · REST APIs', '── Cloud ──', 'AWS · Azure · CI/CD · Databricks · PySpark', '── Databases ──', 'MongoDB · Redis · PostgreSQL · SQLite · FAISS'],
     projects: ['1. Distributed Fine-Tune Pipeline    → github.com/TammineniTanay/distributed-finetune-pipeline', '2. Hybrid RAG System                 → github.com/TammineniTanay/hybrid-rag-system', '3. LiveWire AI Transcription         → github.com/Automate365-LLC/Live-Wire-AI-Desktop', '4. Job Command Center                → github.com/TammineniTanay/job-command-center', '5. Vehicle Detection (Published)     → github.com/TammineniTanay/vechiledetection', 'Type "ls projects" for all 18 projects'],
-    experience: ['Apr 2025 — Present  | AI Systems Developer Intern @ Automate365', 'Jun 2022 — Dec 2022 | AI/ML Engineer Intern @ Globalshala'],
+    experience: ['Apr 2025 — Present  | AI Systems Developer Intern @ VoiceBotics AI', 'Jun 2022 — Dec 2022 | AI/ML Engineer Intern @ Globalshala'],
     education: ['Jan 2024 — Dec 2025 | MS Computer Science, GPA 3.9 @ Southeast Missouri State', '2019 — 2023         | BE Computer Science @ CVR College of Engineering'],
     contact: ['Email    → tanaytammineni22@gmail.com', 'LinkedIn → linkedin.com/in/tanay-tammineni', 'GitHub   → github.com/TammineniTanay', 'Portfolio→ tanaytammineni.vercel.app'],
   };
@@ -266,25 +266,25 @@ const JDMatcher = () => {
 // ── ALL PROJECTS ──────────────────────────────────────────────────────
 const ALL_PROJECTS = [
   {
-    id: 1, year: 'Feb 2026 — Mar 2026', title: 'Distributed Fine-Tune Pipeline', badge: 'New',
+    id: 1, year: 'Feb 2026 — Mar 2026', title: 'Distributed LLM Fine-Tuning Pipeline', badge: 'New',
     bullets: [
-      'End-to-end distributed LLM fine-tuning: data curation → QLoRA + DPO → TIES/DARE/SLERP merging → evaluation → vLLM deployment',
-      'Built with DeepSpeed ZeRO-3, Flash Attention, and PEFT for memory-efficient distributed training across GPUs',
-      'Automated dataset curation with deduplication, quality filtering, and domain-specific preprocessing pipelines',
-      'Model merging via SLERP and Task Arithmetic for capability fusion across multiple fine-tuned checkpoints',
-      'Custom evaluation harness with hallucination scoring, benchmark comparison, and W&B experiment tracking',
+      'Built distributed pipeline across 66 files and 11,000+ lines using QLoRA and DeepSpeed ZeRO-3 to fine-tune Llama 3 8B',
+      'Achieved 41.2% per-GPU memory reduction via MinHash LSH deduplication with 128 permutations across multi-GPU nodes',
+      'Deployed with vLLM and AWQ quantization achieving 3.8x inference throughput improvement on Terraform-provisioned AWS',
+      'Prometheus and Grafana monitoring tracking real-time GPU utilization across the training cluster',
+      'Published findings in UniLLMOps covering QLoRA + DPO training, TIES/DARE/SLERP model merging, and vLLM deployment',
     ],
-    tags: ['PyTorch', 'DeepSpeed', 'HuggingFace', 'QLoRA', 'vLLM', 'PEFT'],
+    tags: ['PyTorch', 'DeepSpeed', 'QLoRA', 'vLLM', 'Terraform', 'AWS'],
     link: 'https://github.com/TammineniTanay/distributed-finetune-pipeline',
   },
   {
-    id: 2, year: 'Feb 2026 — Mar 2026', title: 'Hybrid RAG with Self-Correcting Retrieval', badge: 'New',
+    id: 2, year: 'Feb 2026 — Mar 2026', title: 'Production RAG System', badge: 'New',
     bullets: [
-      'Production RAG with hybrid retrieval: Qdrant + Elasticsearch + Neo4j for dense, sparse, and graph-based search',
-      'Corrective RAG (CRAG) via LangGraph with self-correction loops that re-query when confidence drops below threshold',
-      'Feedback-driven reward model that learns from user corrections to improve retrieval ranking over time',
-      'RAGAS evaluation dashboard tracking faithfulness, answer relevancy, and context precision metrics',
-      'NLI-based hallucination filter with multi-document reasoning and citation source tracking per answer',
+      'Built hybrid retrieval combining Qdrant dense search and Elasticsearch BM25 via Reciprocal Rank Fusion',
+      'Achieved 23.7% retrieval faithfulness gain with context precision of 1.0 across 50 evaluated queries at 163.5ms mean latency',
+      'Implemented CRAG as a LangGraph state machine with query rewriting and web search fallback, triggering self-correction on 38% of queries',
+      'Achieved 0.87 answer relevancy across the arXiv research corpus evaluation with Neo4j graph relationships for contextual depth',
+      'Integrated RAGAS evaluation dashboard monitoring faithfulness, context precision, and answer relevancy in real time via FastAPI and React',
     ],
     tags: ['LangGraph', 'Qdrant', 'Elasticsearch', 'Neo4j', 'RAGAS', 'FastAPI'],
     link: 'https://github.com/TammineniTanay/hybrid-rag-system',
@@ -296,7 +296,7 @@ const ALL_PROJECTS = [
       'Async FFmpeg + asyncio for parallel transcription streams across Zoom, Teams, and Google Meet',
       'Platform fingerprinting, rejoin recovery, and RMS trend tracking for production resilience',
       'EBML magic byte validation for clean WebM audio headers and session registry for concurrent recording',
-      'Production-deployed at Automate365 with device switch detection and health timeline logging',
+      'Production-deployed at VoiceBotics AI with device switch detection and health timeline logging',
     ],
     tags: ['Chrome MV3', 'FastAPI', 'WebSockets', 'Whisper', 'asyncio', 'FFmpeg'],
     link: 'https://github.com/Automate365-LLC/Live-Wire-AI-Desktop',
@@ -316,13 +316,13 @@ const ALL_PROJECTS = [
   {
     id: 5, year: 'Jan 2023 — May 2023', title: 'Real-Time Vehicle Detection (CVR Journal)', badge: 'Research',
     bullets: [
-      'Published in CVR Journal of Science and Technology Vol. 24, June 2023 — peer-reviewed, 3rd Prize at Expo2K23',
-      'Real-time vehicle counting and classification using SSD MobileNet on live traffic video streams',
-      'Achieved 88%+ detection accuracy across cars, trucks, motorcycles, and buses with bounding box output',
-      'Designed for smart city traffic analysis, automated monitoring, and intelligent transportation systems',
+      'Developed a YOLOv8 object detection model processing 5,000+ video frames with 88% accuracy for vehicle counting and classification',
+      'Optimized inference by 25% using TensorFlow model quantization and OpenCV pipelines for real-time edge performance',
+      'Enabled deployment on low-power hardware while maintaining high-speed frame analysis for traffic surveillance',
+      'Published in CVR Journal of Science and Technology Vol. 24, June 2023 — secured 3rd Prize at Project Expo 2K23',
       'Complete pipeline: data collection → training → inference → real-time annotated video output',
     ],
-    tags: ['Python', 'OpenCV', 'SSD MobileNet', 'Deep Learning', 'TensorFlow'],
+    tags: ['Python', 'YOLOv8', 'OpenCV', 'TensorFlow', 'PyTorch'],
     link: 'https://github.com/TammineniTanay/vechiledetection',
   },
   {
@@ -623,12 +623,12 @@ export default function Portfolio() {
           <span style={{ animation: 'blink 1s step-end infinite', borderRight: '2px solid var(--accent)' }}>&nbsp;</span>
         </div>
         <p className="text-xl md:text-2xl text-[#5a6478] max-w-[800px] mb-8 font-light leading-relaxed italic">
-          <strong className="text-white font-medium italic">MS CS · 3.9 GPA · Published Researcher · AI Systems Developer Intern @ Automate365</strong><br />
+          <strong className="text-white font-medium italic">MS CS · 3.9 GPA · Published Researcher · AI Systems Developer Intern @ VoiceBotics AI</strong><br />
           Bridging real-time deep learning performance with production-grade LLM systems.
         </p>
         <div className="flex gap-4 flex-wrap relative z-50 mb-8">
           <a href="#projects" className="btn primary">Deployments</a>
-          <a href="https://drive.google.com/file/d/1Mq-bdqzuT-_7E4vBPVMMoEFHzBV0Fxf6/view" target="_blank" className="btn">Resume ↗</a>
+          <a href="/resume.pdf" target="_blank" className="btn">Resume ↗</a>
           <a href="https://github.com/TammineniTanay" target="_blank" className="btn">GitHub ↗</a>
           <button onClick={() => setShowTerminal(t => !t)} className="btn" style={{ borderColor: 'var(--accent3)', color: 'var(--accent3)' }}>
             {showTerminal ? 'Close Terminal' : '$ Terminal'}
@@ -660,7 +660,7 @@ export default function Portfolio() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
               {[
                 "I started with computer vision — building real-time vehicle detection systems and publishing peer-reviewed research. That obsession with making AI work in the real world never left.",
-                "At Automate365, I've shipped production RAG pipelines, real-time transcription systems, and end-to-end LLM fine-tuning infrastructure. I don't just prototype — I deploy.",
+                "At VoiceBotics AI, I've shipped production RAG pipelines, real-time transcription systems, and end-to-end LLM fine-tuning infrastructure. I don't just prototype — I deploy.",
                 "I'm an MS grad from Southeast Missouri State (3.9 GPA), originally from Hyderabad, India, now based in Irving, TX. I bring a global perspective and a bias toward building things that actually work.",
               ].map((p, i) => (
                 <p key={i} style={{ fontSize: '0.9rem', color: 'var(--muted)', lineHeight: 1.8 }}>{p}</p>
@@ -672,7 +672,7 @@ export default function Portfolio() {
             <div style={{ fontFamily: 'DM Mono,monospace', fontSize: '0.72rem', color: 'var(--accent3)', letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: '1rem' }}>// What I Bring</div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
               {[
-                { icon: '⚡', title: 'Production-Grade AI', desc: 'I build LLM pipelines, RAG systems, and CV models that run in production — not just Jupyter notebooks. Deployed at Automate365 serving real enterprise clients.' },
+                { icon: '⚡', title: 'Production-Grade AI', desc: 'I build LLM pipelines, RAG systems, and CV models that run in production — not just Jupyter notebooks. Deployed at VoiceBotics AI serving real enterprise clients.' },
                 { icon: '📄', title: 'Published Research', desc: 'Peer-reviewed researcher with published work in computer vision. I understand the gap between academic AI and production AI — and how to bridge it.' },
                 { icon: '🔧', title: 'Full-Stack AI Engineering', desc: 'From model fine-tuning and RAG architecture to FastAPI backends and React dashboards — I can own the entire AI product stack end to end.' },
               ].map((item, i) => (
@@ -764,14 +764,35 @@ export default function Portfolio() {
           <div className="timeline-item">
             <div className="timeline-dot"></div>
             <span className="font-mono text-sm text-[#00e5ff]">Apr 2025 — Present</span>
-            <h3 className="text-xl title-font text-white mt-2 font-bold">AI Systems Developer Intern @ Automate365</h3>
-            <p className="text-sm text-[#e8eaf0]/70 mt-3 italic">Deploying real-time LLM pipelines, hybrid RAG systems, and AI transcription infrastructure for enterprise clients in Irving, TX.</p>
+            <h3 className="text-xl title-font text-white mt-2 font-bold">AI Systems Developer Intern @ VoiceBotics AI</h3>
+            <ul style={{ listStyle: 'none', marginTop: '0.75rem', display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+              {[
+                'Developed a FastAPI WebSocket server with 60s reconnect window, achieving 94% preflight success rate for persistent streaming across high-latency environments',
+                'Built an STT latency watchdog with automated recovery, maintaining mean transcription TTF under 2.5s across live Zoom and Teams sessions',
+                'Implemented 16 normalized error codes with JSONL instrumentation logging, generating automated beta metrics summaries',
+                'Engineered the LiveWire Chrome extension using tabCapture API and FFmpeg stereo splitting for dual-channel audio capture',
+              ].map((b, i) => (
+                <li key={i} style={{ fontSize: '13px', color: 'rgba(232,234,240,0.7)', paddingLeft: '1.1rem', position: 'relative', lineHeight: 1.6, fontStyle: 'italic' }}>
+                  <span style={{ position: 'absolute', left: 0, color: '#00e5ff', fontFamily: 'DM Mono, monospace' }}>→</span>{b}
+                </li>
+              ))}
+            </ul>
           </div>
           <div className="timeline-item">
             <div className="timeline-dot"></div>
             <span className="font-mono text-sm text-[#00e5ff]">Jun 2022 — Dec 2022</span>
-            <h3 className="text-xl title-font text-white mt-2 font-bold">AI/ML Engineer Intern @ Globalshala</h3>
-            <p className="text-sm text-[#e8eaf0]/70 mt-3 italic">Built ML models for text classification and computer vision pipelines achieving 87% accuracy on production datasets.</p>
+            <h3 className="text-xl title-font text-white mt-2 font-bold">Software Engineer Intern @ Globalshala</h3>
+            <ul style={{ listStyle: 'none', marginTop: '0.75rem', display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+              {[
+                'Managed Java and SQL data systems for cloud-native Azure integrations, maintaining 99.9% uptime across enterprise data ingestion pipelines',
+                'Built Azure Databricks ETL pipelines for Power BI dashboards, delivering real-time KPI insights and reducing report generation time by 70%',
+                'Optimized SQL schemas across distributed enterprise systems, improving data retrieval speeds by 40%',
+              ].map((b, i) => (
+                <li key={i} style={{ fontSize: '13px', color: 'rgba(232,234,240,0.7)', paddingLeft: '1.1rem', position: 'relative', lineHeight: 1.6, fontStyle: 'italic' }}>
+                  <span style={{ position: 'absolute', left: 0, color: '#00e5ff', fontFamily: 'DM Mono, monospace' }}>→</span>{b}
+                </li>
+              ))}
+            </ul>
           </div>
           <div className="timeline-item">
             <div className="timeline-dot"></div>
@@ -786,8 +807,20 @@ export default function Portfolio() {
             <p className="text-sm text-[#e8eaf0]/70 mt-3 italic">Engineering foundation in Algorithms, Data Structures, Database Systems, and OOP.</p>
           </div>
 
-          {/* PUBLICATION */}
-          <div className="mt-10 p-5 border border-[#1e2535]" style={{ borderLeft: '2px solid #7c3aed' }}>
+          {/* PUBLICATIONS */}
+          <div className="mt-10 p-5 border border-[#1e2535]" style={{ borderLeft: '2px solid #00ff94' }}>
+            <span className="font-mono text-xs text-[#00ff94] uppercase tracking-widest block mb-2">📄 Peer-Reviewed Publication</span>
+            <h3 className="title-font text-white font-bold mb-2 leading-snug text-sm">UniLLMOps: A Unified Framework for End-to-End LLM Production Systems</h3>
+            <p className="text-xs text-[#5a6478] mb-3 italic">Zenodo · DOI: 10.5281/zenodo.19582347 · April 2026</p>
+            <a href="https://doi.org/10.5281/zenodo.19582347"
+              target="_blank" rel="noopener noreferrer"
+              className="font-mono text-xs uppercase tracking-widest text-[#00ff94] hover:text-white transition-colors"
+              style={{ borderBottom: '1px solid #00ff94', paddingBottom: '2px' }}>
+              Read on Zenodo →
+            </a>
+          </div>
+
+          <div className="mt-4 p-5 border border-[#1e2535]" style={{ borderLeft: '2px solid #7c3aed' }}>
             <span className="font-mono text-xs text-[#7c3aed] uppercase tracking-widest block mb-2">📄 Peer-Reviewed Publication</span>
             <h3 className="title-font text-white font-bold mb-2 leading-snug text-sm">Real-Time Video-Based Vehicle Detection, Counting &amp; Classification System</h3>
             <p className="text-xs text-[#5a6478] mb-3 italic">CVR Journal of Science &amp; Technology · Vol. 24 · June 2023 · 3rd Prize Expo2K23</p>
@@ -871,7 +904,7 @@ export default function Portfolio() {
         <div className="flex justify-center gap-10 font-mono text-sm text-[#5a6478] uppercase relative z-50 italic font-bold mb-4">
           <a href="https://www.linkedin.com/in/tanay-tammineni/" target="_blank" className="hover:text-[#00e5ff] transition-colors">LinkedIn</a>
           <a href="https://github.com/TammineniTanay" target="_blank" className="hover:text-[#00e5ff] transition-colors">GitHub</a>
-          <a href="https://drive.google.com/file/d/1Mq-bdqzuT-_7E4vBPVMMoEFHzBV0Fxf6/view" target="_blank" className="hover:text-[#00e5ff] transition-colors">Resume</a>
+          <a href="/resume.pdf" target="_blank" className="hover:text-[#00e5ff] transition-colors">Resume</a>
         </div>
         <div className="font-mono text-[10px] text-[#5a6478] opacity-50">Last updated: March 2026 · Actively seeking full-time AI/ML roles</div>
       </footer>

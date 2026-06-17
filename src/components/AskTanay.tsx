@@ -7,7 +7,7 @@ const SYSTEM_PROMPT = `You are Tanay Tammineni's AI portfolio assistant. Answer 
 
 Key facts about Tanay:
 - MS Computer Science, Southeast Missouri State University, GPA 3.9, Dec 2025
-- AI Systems Developer Intern at Automate365 (VoiceBotics AI), Irving TX, Apr 2025-present
+- AI Systems Developer Intern at VoiceBotics AI, Irving TX, Apr 2025-present
 - AI/ML Engineer Intern at Globalshala, Jun-Dec 2022
 - Published peer-reviewed researcher: "Real-Time Vehicle Detection, Counting & Classification System", CVR Journal Vol.24, June 2023
 - Skills: Python, PyTorch, TensorFlow, LangChain, LlamaIndex, RAG, Agentic AI, FastAPI, Docker, AWS, Azure, MongoDB, Redis, SQL
@@ -64,13 +64,13 @@ export default function AskTanay() {
         let reply = "I'd love to answer that! For the full interactive experience, set NEXT_PUBLIC_GROQ_API_KEY in your .env.local file (free at console.groq.com).";
 
         if (lower.includes('skill') || lower.includes('tech') || lower.includes('stack')) {
-          reply = "Tanay's strongest skills are Python, LLM fine-tuning (QLoRA/LoRA), RAG pipelines (LangChain + LlamaIndex), and FastAPI. He's built production systems at Automate365 using these daily.";
+          reply = "Tanay's strongest skills are Python, LLM fine-tuning (QLoRA/LoRA), RAG pipelines (LangChain + LlamaIndex), and FastAPI. He's built production systems at VoiceBotics AI using these daily.";
         } else if (lower.includes('rag') || lower.includes('retrieval')) {
           reply = "Tanay built a production Hybrid RAG System with Qdrant + Elasticsearch + Neo4j retrieval, Corrective RAG via LangGraph, and a RAGAS evaluation dashboard. It features self-correction loops and NLI-based hallucination filtering.";
         } else if (lower.includes('remote') || lower.includes('relocat') || lower.includes('location')) {
           reply = "Tanay is based in Irving, TX and is open to full relocation anywhere in the US. He's also open to remote roles.";
         } else if (lower.includes('different') || lower.includes('stand out') || lower.includes('unique')) {
-          reply = "Tanay is one of the few candidates who combines peer-reviewed published research, production LLM deployments at a real company (Automate365), and a 3.9 GPA MS degree. He ships real systems, not just notebooks.";
+          reply = "Tanay is one of the few candidates who combines peer-reviewed published research, production LLM deployments at a real company (VoiceBotics AI), and a 3.9 GPA MS degree. He ships real systems, not just notebooks.";
         } else if (lower.includes('project') || lower.includes('built') || lower.includes('work')) {
           reply = "Tanay's top projects are: Distributed Fine-Tune Pipeline (QLoRA + DeepSpeed), Hybrid RAG System (Qdrant + CRAG), LiveWire AI Transcription (Chrome extension + Whisper), and Job Command Center (FastAPI + Claude Haiku). All are real deployed systems.";
         } else if (lower.includes('contact') || lower.includes('hire') || lower.includes('email')) {
